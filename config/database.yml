@@ -1,0 +1,25 @@
+#default: &default
+#  adapter: postgresql
+#  encoding: unicode
+#  pool: 5
+#  username: postgres
+#  password: jliu
+#  host: 192.168.1.76
+#  port: 15432
+#  variables:
+#    tcp_keepalives_idle: 60
+#    tcp_keepalives_interval: 60
+#    tcp_keepalives_count: 100
+#test:
+#  <<: *default
+#  database: sso_test
+#development:
+#  <<: *default
+#  database: sso_development
+#qa:
+#  <<: *default
+#  database: sso_qa
+#production:
+#  <<: *default
+#  database: sso_production
+
