@@ -11,6 +11,8 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'sass-rails'
 gem 'devise'
+gem 'devise_saml_authenticatable'
+gem 'config'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
