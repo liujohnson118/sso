@@ -39,6 +39,8 @@ class SamlSessionsController < Devise::SessionsController
       resource_class.reset_session_key_for(logout_request.name_id)
       redirect_to generate_idp_logout_response(@saml_config, logout_request.id)
     elsif params[:SAMLResponse]
+      session[:nameid] = nil
+      session[:saml_issuer] = nil
       redirect_to action: :new
     else
       head :invalid_request
