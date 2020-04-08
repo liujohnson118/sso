@@ -1,6 +1,7 @@
 - if session[:nameid]
   h1 = "Welcome #{session[:nameid]}"
-  = link_to 'Logout', session_activity_destroy_path
+  - idp_name = IdpSettingsAdapter.get_idp_name(session[:saml_issuer])
+  = link_to "Exit to #{idp_name}", session_activity_destroy_path, remote: true
 - else
   h1 You're not signed in
   = link_to 'Return to sign in', new_user_session_path

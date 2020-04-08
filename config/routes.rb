@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     post 'users/saml/auth' => 'saml_sessions#create', as: :user_sso_session
     match 'users/saml/sign_out' => 'saml_sessions#destroy', as: :destroy_user_sso_session, via: [:get, :post]
     get 'users/saml/metadata' => 'saml_sessions#metadata', as: :metadata_user_sso_session
-    match 'users/saml/idp_sign_out' => 'saml_sessions#idp_sign_out', via: [:get, :post]
+      #match 'users/saml/idp_sign_out' => 'saml_sessions#idp_sign_out', via: [:get, :post]
   end
   get 'session_activity/destroy'
 end
