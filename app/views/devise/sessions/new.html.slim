@@ -1,15 +1,16 @@
 br
-.login-page
+.login-page.tab-pane
   /! Nav tabs
   br
   ul.nav.nav-tabs.nav-justified
-    li.active
-      a data-toggle="tab" href="#login" Sign In
     li
-      a data-toggle="tab" href="#register" Sign Up
-  br
+      a.new-session-tab-toggle data-toggle="tab" href="#login" Sign In
+    li
+      a.new-session-tab-toggle data-toggle="tab" href="#register" Sign Up
+    li
+      a.new-session-tab-toggle data-toggle="tab" href="#identity-providers" Sign-in Partners
   .tab-content
-    #login.tab-pane.active
+    #login.tab-pane.active.in
       /! Login form
       = form_for(resource, as: resource_name, url: session_path(resource_name), html: {role: 'form'}) do |f|
         .form-group
@@ -41,11 +42,11 @@ br
             = f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm Password', class: 'form-control', id: 'cpassword'
           = f.submit "Sign up", class: 'btn btn-info'
         = render "devise/shared/links"
-
-#idp_sign_in_pane
-  - Settings.identity_providers.keys.each do |idp|
-    = link_to idp.to_s, new_saml_user_session_path(idp_entity_id: Settings.identity_providers[idp].idp_entity_id), class: 'btn btn-link'
-  end
+    #identity-providers.tab-pane.fade
+      - Settings.identity_providers.keys.each do |idp|
+        = link_to idp.to_s.capitalize, new_saml_user_session_path(idp_entity_id: Settings.identity_providers[idp].idp_entity_id), class: 'btn btn-link'
+        br
+      end
 
 .footer
   p Footer
