@@ -3,8 +3,7 @@ require 'ruby-saml'
 
 class SamlSessionsController < Devise::SessionsController
   skip_before_action :verify_authenticity_token, raise: false
-  before_action :find_idp_entity_id, only: [:create, :idp_sign_out]
-  before_action :set_idp_entity_id, only: [:new, :metadata]
+  before_action :set_idp_entity_id
   before_action :set_saml_config
 
   def new
@@ -61,8 +60,10 @@ class SamlSessionsController < Devise::SessionsController
 
   private
 
-  def find_idp_entity_id
-    if params[:SAMLRequest]
+  def set_idp_entity_id
+    if params[:idp_entity_id]
+      @idp_entity_id = params[:idp_entity_id]
+    elsif params[:SAMLRequest]
       @idp_entity_id = OneLogin::RubySaml::SloLogoutrequest.new(params[:SAMLRequest]).issuer
     elsif params[:SAMLResponse]
       response = OneLogin::RubySaml::Response.new(params[:SAMLResponse])
@@ -76,10 +77,6 @@ class SamlSessionsController < Devise::SessionsController
         end
       end
     end
-  end
-
-  def set_idp_entity_id
-    @idp_entity_id = params[:idp_entity_id]
   end
 
   def set_saml_config
