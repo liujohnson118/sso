@@ -1,31 +1,56 @@
-.devise-form
+br
+.login-page
+  /! Nav tabs
   br
-  .login-page
-    /! Nav tabs
-    ul.nav.nav-tabs.nav-justified style="background: #2879B2;"
-      li style="background: #2879B2;"
-        a data-toggle="tab" href="#login"
-          i.fa.fa-sign-in
-          | Sign In
-    .tab-content
-      .tab-pane.fade.active.in
-        /! Login form
-        = form_for(resource, as: resource_name, url: session_path(resource_name), html: {role: 'form'}) do |f|
+  ul.nav.nav-tabs.nav-justified
+    li.active
+      a data-toggle="tab" href="#login" Sign In
+    li
+      a data-toggle="tab" href="#register" Sign Up
+  br
+  .tab-content
+    #login.tab-pane.active
+      /! Login form
+      = form_for(resource, as: resource_name, url: session_path(resource_name), html: {role: 'form'}) do |f|
+        .form-group
+          label for="email"  Email
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'Email', id: 'email'
           .form-group
-            label for="email"  Email
-            = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'Email', id: 'email'
-            .form-group
-              label for="password"  Password
-              = f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'form-control', id: 'password'
-            - if devise_mapping.rememberable?
-              .field
-                = f.check_box :remember_me
-                = f.label :remember_me
-            button.btn.btn-info.btn-sm type="submit" style="background-color: #2879B2;"  Submit
-            | &nbsp;
-            button.btn.btn-default.btn-sm type="reset"  Reset
+            label for="password"  Password
+            = f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'form-control', id: 'password'
+          - if devise_mapping.rememberable?
+            .field
+              = f.check_box :remember_me
+              = f.label :remember_me
+          button.btn.btn-info.btn-sm type="submit"  Submit
+          | &nbsp;
+          button.btn.btn-info.btn-sm type="reset"  Reset
+        = render "devise/shared/links"
+    #register.tab-pane.fade
+      /! Register form
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {role: 'form'}) do |f|
+        = devise_error_messages!
+        .form-group
+          label for="email"  Email
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'Email', id: 'email'
+        .form-group
+          label for="password"  Password
+          = f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'form-control', id: 'password'
+          .form-group
+            label for="password"  Password Confirmation
+            = f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm Password', class: 'form-control', id: 'cpassword'
+          = f.submit "Sign up", class: 'btn btn-info'
+        = render "devise/shared/links"
 
 #idp_sign_in_pane
   - Settings.identity_providers.keys.each do |idp|
     = link_to idp.to_s, new_saml_user_session_path(idp_entity_id: Settings.identity_providers[idp].idp_entity_id), class: 'btn btn-link'
   end
+
+.footer
+  p Footer
+  span style="text-align: center;"
+    = link_to 'Your Privacy Policy', '#', class: 'btn btn-link'
+    | #{DateTime.now.year} Johnson Liu
+
+= image_tag "main-back.png"

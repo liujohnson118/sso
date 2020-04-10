@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  devise_for :users, skip: [:registrations, :saml_authenticatable]
+  devise_for :users, skip: [:saml_authenticatable]
   devise_scope :user do
     # SSO Routes
     get 'users/saml/sign_in' => 'saml_sessions#new', as: :new_saml_user_session

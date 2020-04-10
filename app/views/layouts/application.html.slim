@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title
+      | SSO
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    - if current_user || session[:nameid]
+      = render 'layouts/header'
+      - if notice
+        div.notice
+          = notice
+      - if alert
+        div.alert
+          = alert
+      div.mainbar
+    - if !current_user
+      - if notice
+        div.notice
+          = notice
+      - if alert
+        div.alert
+          = alert
+    = yield
+

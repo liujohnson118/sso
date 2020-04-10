@@ -1,0 +1,17 @@
+.main-head
+  div#navbar
+    .row
+      .col-md-9.col-sm-4.col-xs-6
+        /! Page title
+        h2
+          i.fa.fa-danger
+          | SSO
+      .col-md-3.hidden-sm.hidden-xs
+        /! Head user
+        .head-user.dropdown.pull-right
+          p Signed in as #{current_user&.email || session[:nameid]}
+          - if session[:saml_issuer]
+            = link_to "Exit to #{IdpSettingsAdapter.get_idp_name(session[:saml_issuer]).capitalize}", session_activity_destroy_path, remote: true, class: 'btn btn-danger'
+          - else
+            = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger'
+        .clearfix
