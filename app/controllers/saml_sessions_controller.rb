@@ -32,20 +32,6 @@ class SamlSessionsController < Devise::SessionsController
     end
   end
 
-  def idp_sign_out
-    if params[:SAMLRequest] && Devise.saml_session_index_key
-      logout_request = OneLogin::RubySaml::SloLogoutrequest.new(params[:SAMLRequest], settings: @saml_config)
-      resource_class.reset_session_key_for(logout_request.name_id)
-      redirect_to generate_idp_logout_response(@saml_config, logout_request.id)
-    elsif params[:SAMLResponse]
-      session[:nameid] = nil
-      session[:saml_issuer] = nil
-      redirect_to action: :new
-    else
-      head :invalid_request
-    end
-  end
-
   protected
 
   def relay_state
