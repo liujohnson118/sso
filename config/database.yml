@@ -3,8 +3,8 @@
 #  encoding: unicode
 #  pool: 5
 #  username: postgres
-#  password: jliu
-#  host: 192.168.1.76
+#  password:
+#  host: 
 #  port: 15432
 #  variables:
 #    tcp_keepalives_idle: 60
