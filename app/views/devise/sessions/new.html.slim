@@ -43,8 +43,14 @@ br
           = f.submit "Sign up", class: 'btn btn-info'
         = render "devise/shared/links"
     #identity-providers.tab-pane.fade
-      table.table.table-striped.table-bordered.data-table
+      table#idp-table.table.table-striped.table-bordered.data-table
         thead
+          tr
+            th
+              | Identity Provider
+            th
+              | Link
+        tbody
           - Settings.identity_providers.keys.each do |idp|
             - idp_name = idp.to_s
             tr
@@ -60,4 +66,4 @@ br
     = link_to 'Your Privacy Policy', '#', class: 'btn btn-link'
     | #{DateTime.now.year} Johnson Liu
 
-= image_tag "main-back.png"
+= javascript_include_tag 'dataTables.min.js'

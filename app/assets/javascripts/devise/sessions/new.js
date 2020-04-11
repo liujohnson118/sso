@@ -1,3 +1,5 @@
 $(document).ready(function() {
-    $('table.data-table')[0].dataTable();
+    $('table.data-table').each(function(){
+        $(this).dataTable();
+    })
 });
