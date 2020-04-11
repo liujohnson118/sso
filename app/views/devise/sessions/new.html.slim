@@ -4,7 +4,7 @@ br
   br
   ul.nav.nav-tabs.nav-justified
     li
-      a.new-session-tab-toggle data-toggle="tab" href="#login" Sign In
+      a.new-session-tab-toggle.active data-toggle="tab" href="#login" Sign In
     li
       a.new-session-tab-toggle data-toggle="tab" href="#register" Sign Up
     li
@@ -55,7 +55,7 @@ br
             - idp_name = idp.to_s
             tr
               th
-                p Picture
+                = image_tag "identity_providers/#{idp_name}.png", size: '120x40'
               th
                 = link_to idp_name.capitalize, new_saml_user_session_path(idp_entity_id: Settings.identity_providers[idp].idp_entity_id), class: 'btn btn-link'
           end

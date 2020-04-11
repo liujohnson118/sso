@@ -1,4 +1,7 @@
 .new-session-tab-toggle{
     background: #3aa8bc;
-    color: black;
+}
+
+.new-session-tab-toggle.active{
+    background: #1d2124;
 }
