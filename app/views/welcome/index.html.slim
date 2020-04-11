@@ -1,8 +1,9 @@
 - if current_user
-  h1 = "Welcome #{current_user.email}"
-- elsif session[:nameid]
-  - idp_name = IdpSettingsAdapter.get_idp_name(session[:saml_issuer])
-  h1 = "Welcome #{idp_name} user #{session[:nameid]}"
+  - if saml_session?
+    - idp_name = IdpSettingsAdapter.get_idp_name(session[:saml_issuer])
+    h1 = "Welcome #{idp_name} user #{current_user.email}"
+  - else
+    h1 = "Welcome #{idp_name} user #{current_user.email}"
 - else
   h1 You're not signed in
   = link_to 'Return to sign in', new_user_session_path

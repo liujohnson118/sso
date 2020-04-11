@@ -9,8 +9,8 @@
       .col-md-3.hidden-sm.hidden-xs
         /! Head user
         .head-user.dropdown.pull-right
-          - if active_user_session?
-            p Signed in as #{current_user&.email || session[:nameid]}
+          - if current_user
+            p Signed in as #{current_user.email}
             - if session[:saml_issuer]
               = link_to "Exit to #{IdpSettingsAdapter.get_idp_name(session[:saml_issuer]).capitalize}", session_activity_destroy_path, remote: true, class: 'btn btn-danger'
             - else

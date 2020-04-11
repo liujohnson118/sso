@@ -23,9 +23,13 @@ class SamlSessionsController < Devise::SessionsController
 
   def create
     response_to_validate = OneLogin::RubySaml::Response.new(params[:SAMLResponse], settings: @saml_config)
-    if response_to_validate.is_valid?
-      session[:nameid] = response_to_validate.nameid
+    if response_to_validate.is_valid? && email = response_to_validate.nameid
       session[:saml_issuer] = @idp_entity_id
+      if user = User.find_by_email(email)
+        sign_in user
+      else
+        sign_in User.create(email: email, password: SecureRandom.base58(24))
+      end
       redirect_to root_path
     else
       redirect_to new_user_session_path
