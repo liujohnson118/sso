@@ -10,6 +10,12 @@ br
     li
       a.new-session-tab-toggle data-toggle="tab" href="#identity-providers" Sign-in Partners
   .tab-content
+    - if notice
+      div.notice
+        h6 style="color: blue;" = notice
+    - if alert
+      div.alert
+        h6 style="color: red;" = alert
     #login.tab-pane.active.in
       /! Login form
       = form_for(resource, as: resource_name, url: session_path(resource_name), html: {role: 'form'}) do |f|
@@ -61,10 +67,10 @@ br
           end
 br
 
-.footer
-  p Footer
-  span style="text-align: center;"
-    = link_to 'Your Privacy Policy', '#', class: 'btn btn-link'
-    | #{DateTime.now.year} Johnson Liu
+footer.page-footer.font-small.blue.pt-4
+  .footer-copyright.text-center.py-3
+    span style="text-align: center;"
+      = link_to 'Privacy Policy', '#', class: 'btn btn-link'
+      | #{DateTime.now.year} Johnson Liu
 
 = javascript_include_tag 'dataTables.min.js'

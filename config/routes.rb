@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     match 'users/saml/sign_out' => 'saml_sessions#destroy', as: :destroy_user_sso_session, via: [:get, :post]
     get 'users/saml/metadata' => 'saml_sessions#metadata', as: :metadata_user_sso_session
   end
-
   get 'session_activity/destroy'
+  get 'welcome/bitcoin_prices'
+
 end

@@ -8,12 +8,13 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     = render 'layouts/header'
-    - if notice
-      div.notice
-        = notice
-    - if alert
-      div.alert
-        = alert
+    - if current_user
+      - if notice
+        div.notice
+          h6 style="color: blue;" = notice
+      - if alert
+        div.alert
+          h6 style="color: red;" =alert
     div.mainbar
       = yield
 

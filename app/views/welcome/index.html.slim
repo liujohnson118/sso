@@ -1,11 +1,13 @@
-- if current_user
-  - if saml_session?
-    - idp_name = IdpSettingsAdapter.get_idp_name(session[:saml_issuer])
-    h1 = "Welcome #{idp_name} user #{current_user.email}"
-  - else
-    h1 = "Welcome #{idp_name} user #{current_user.email}"
-- else
-  h1 You're not signed in
-  = link_to 'Return to sign in', new_user_session_path
+br
+br
+.col-md-9.align-content-center
+  table#bitcoin-prices-table.data-table.table-striped.table-bordered
+    thead
+      tr
+        th Currency
+        th 24-Hour
+        th 7-Day
+        th 30-Day
+    tbody
 
-p This is welcome/index
+= javascript_include_tag 'dataTables.min.js'
