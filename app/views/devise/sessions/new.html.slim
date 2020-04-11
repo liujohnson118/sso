@@ -43,10 +43,16 @@ br
           = f.submit "Sign up", class: 'btn btn-info'
         = render "devise/shared/links"
     #identity-providers.tab-pane.fade
-      - Settings.identity_providers.keys.each do |idp|
-        = link_to idp.to_s.capitalize, new_saml_user_session_path(idp_entity_id: Settings.identity_providers[idp].idp_entity_id), class: 'btn btn-link'
-        br
-      end
+      table.table.table-striped.table-bordered.data-table
+        thead
+          - Settings.identity_providers.keys.each do |idp|
+            - idp_name = idp.to_s
+            tr
+              th
+                p Picture
+              th
+                = link_to idp_name.capitalize, new_saml_user_session_path(idp_entity_id: Settings.identity_providers[idp].idp_entity_id), class: 'btn btn-link'
+          end
 
 .footer
   p Footer
