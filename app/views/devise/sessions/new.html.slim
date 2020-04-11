@@ -16,54 +16,25 @@ br
     - if alert
       div.alert
         h6 style="color: red;" = alert
-    #login.tab-pane.active.in
+    #login.new-session-tab.tab-pane.active
       /! Login form
-      = form_for(resource, as: resource_name, url: session_path(resource_name), html: {role: 'form'}) do |f|
-        .form-group
-          label for="email"  Email
-          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'Email', id: 'email'
-          .form-group
-            label for="password"  Password
-            = f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'form-control', id: 'password'
-          - if devise_mapping.rememberable?
-            .field
-              = f.check_box :remember_me
-              = f.label :remember_me
-          button.btn.btn-info.btn-sm type="submit"  Submit
-          | &nbsp;
-          button.btn.btn-info.btn-sm type="reset"  Reset
-        = render "devise/shared/links"
-    #register.tab-pane.fade
+      = render 'devise/sessions/login_form'
+    #register.new-session-tab.tab-pane.fade
       /! Register form
-      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {role: 'form'}) do |f|
-        = devise_error_messages!
-        .form-group
-          label for="email"  Email
-          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'Email', id: 'email'
-        .form-group
-          label for="password"  Password
-          = f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'form-control', id: 'password'
-          .form-group
-            label for="password"  Password Confirmation
-            = f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm Password', class: 'form-control', id: 'cpassword'
-          = f.submit "Sign up", class: 'btn btn-info'
-        = render "devise/shared/links"
-    #identity-providers.tab-pane.fade
+      = render 'devise/registrations/form'
+    #identity-providers.new-session-tab.tab-pane.fade
       table#idp-table.table.table-striped.table-bordered.data-table
         thead
           tr
-            th
-              | Identity Provider
-            th
-              | Link
+
         tbody
-          - Settings.identity_providers.keys.each do |idp|
-            - idp_name = idp.to_s
+          - Settings.identity_providers&.keys.each_slice(2) do |first_idp, second_idp|
             tr
               th
-                = image_tag "identity_providers/#{idp_name}.png", size: '120x40'
-              th
-                = link_to idp_name.capitalize, new_saml_user_session_path(idp_entity_id: Settings.identity_providers[idp].idp_entity_id), class: 'btn btn-link'
+                = link_to (image_tag "identity_providers/#{first_idp.to_s}.png", size: '120x40'), new_saml_user_session_path(idp_entity_id: Settings.identity_providers[first_idp].idp_entity_id)
+              - if second_idp
+                th
+                  = link_to (image_tag "identity_providers/#{second_idp.to_s}.png", size: '120x40'), new_saml_user_session_path(idp_entity_id: Settings.identity_providers[second_idp].idp_entity_id)
           end
 br
 
@@ -72,5 +43,3 @@ footer.page-footer.font-small.blue.pt-4
     span style="text-align: center;"
       = link_to 'Privacy Policy', '#', class: 'btn btn-link'
       | #{DateTime.now.year} Johnson Liu
-
-= javascript_include_tag 'dataTables.min.js'
