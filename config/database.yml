@@ -5,7 +5,7 @@
 #  username: postgres
 #  password:
 #  host: 
-#  port: 15432
+#  port: 
 #  variables:
 #    tcp_keepalives_idle: 60
 #    tcp_keepalives_interval: 60
