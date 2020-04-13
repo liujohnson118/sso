@@ -1,0 +1,44 @@
+## READ THIS FIRST
+#  idp_cert can be omitted if you have idp_cert_fingerprint and idp_cert_fingerprint_algorithm
+
+identity_providers:
+  onelogin:
+    #Mandatory Settings
+    idp_homepage:     #Page of IDP where user accesses all his/her apps authenticated by the IDP
+    idp_entity_id:  # Entity ID of IDP
+    idp_sso_target_url:  #Single Sign On Target URL
+    issuer:  #Should be in format of http://localhost:4435/users/saml/metadata?idp_entity_id=#{idp_entity_id above}
+    assertion_consumer_service_url:  #Assertion consumer service URL
+    name_identifier_format: urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+    assertion_consumer_service_binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
+    idp_cert_fingerprint_algorithm: http://www.w3.org/2000/09/xmldsig#sha256
+    idp_cert_fingerprint:  #Most IDPs would provide this, otherwise run openssl x509 -text -noout -in ~/path/to/your/certificate  -fingerprint -sha256
+    #Optional Settings, set these up if using SLO as well
+#    idp_slo_target_url:
+#    single_logout_service_binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
+
+  okta:
+    idp_homepage:  #Page of IDP where user accesses all his/her apps authenticated by the IDP
+    idp_entity_id:  # Entity ID of IDP
+    idp_sso_target_url:  #Single Sign On Target URL
+    issuer:  #Should be in format of http://localhost:4435/users/saml/metadata?idp_entity_id=#{idp_entity_id above}
+    assertion_consumer_service_url:  #Assertion consumer service URL
+    name_identifier_format: urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+    assertion_consumer_service_binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
+    idp_cert_fingerprint_algorithm: http://www.w3.org/2000/09/xmldsig#sha256
+    idp_cert_fingerprint:  #Most IDPs would provide this, otherwise run openssl x509 -text -noout -in ~/path/to/your/certificate  -fingerprint -sha256
+#    idp_slo_target_url:
+#    single_logout_service_binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
+
+    #Optional security settings, you can set this up according to Wiki on https://github.com/onelogin/ruby-saml
+    security:
+      logout_requests_signed: true
+      authn_requests_signed: true
+      want_assertions_signed: true
+      metadata_signed: true
+      signature_method: http://www.w3.org/2001/04/xmldsig-more#rsa-sha256
+      digest_method: http://www.w3.org/2001/04/xmlenc#sha256
+    #certificate for signing SLO request
+    certificate:
+    #private key of certificate above
+    private_key:
