@@ -9,7 +9,7 @@ The system needs to support Postgres and Docker.
 * Configuration
 Navigate to the project folder.
 Buit the docker image using `docker build --no-cache -t sso .`.
-Navigate to `/config/` folder and copy `database.yml` into a file `database.local.yml` file. Open `database.local.yml` file and enter the Postgres host and port on your computer.  
+Navigate to ` /config/ ` folder and copy `database.yml` into a file `database.local.yml` file. Open `database.local.yml` file and enter the Postgres host and port on your computer.  
 Build a container for sso. As an example: 
 
 ```
