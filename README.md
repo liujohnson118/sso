@@ -1,12 +1,14 @@
-== README
+# README
 
-* Ruby and Rails version
+The setup procedure in this document assumes the system supports Docker and Postgres. For demonstration purposes, I am building the docker container for this project by mapping TCP port 80 inside the container to port 4435 on my host. 
+
+## Ruby and Rails version
 This project uses Rails version 6.0.2.2 with Ruby version 2.6.5.
 
-* System dependencies
+## System dependencies
 The system needs to support Postgres and Docker. 
 
-* Configuration
+## Configuration
 Navigate to the project folder.
 Buit the docker image using `docker build --no-cache -t sso .`.
 Navigate to ` /config/ ` folder and copy `database.yml` into a file `database.local.yml` file. Open `database.local.yml` file and enter the Postgres host and port on your computer.  
@@ -28,18 +30,10 @@ docker run -it -d \
   
 ```
 
-* Database creation
+Enter the container `docker exec -it sso /bin/bash` and run `bundle install`.
 
-* Database initialization
+## Database creation and intialization
 
-* How to run the test suite
+While inside the container, run `rake db:create` and `rake db:migrate`.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+## Services (job queues, cache servers, search engines, etc.)
