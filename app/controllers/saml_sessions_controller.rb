@@ -4,7 +4,6 @@ require 'ruby-saml'
 class SamlSessionsController < Devise::SessionsController
   skip_before_action :verify_authenticity_token, raise: false
   before_action :set_idp_entity_id
-  before_action :set_saml_config
 
   def new
     if params[:idp_entity_id]
@@ -67,9 +66,6 @@ class SamlSessionsController < Devise::SessionsController
         end
       end
     end
-  end
-
-  def set_saml_config
     @saml_config = IdpSettingsAdapter.saml_settings(@idp_entity_id)
   end
 end
