@@ -30,10 +30,19 @@ docker run -it -d \
   
 ```
 
-Enter the container `docker exec -it sso /bin/bash` and run `bundle install`.
+Set up your own IDP using an IDP of your choice. In my example, I used Onelogin SAML Test Connector (SP Shibboleth) and Okta SAML App Integration Wizard. If you use these 2 apps, you can follow settings in `config/settings/development.yml` to set up. 
 
-## Database creation and intialization
+Go to `app/assets/image` folder and upload images of your IDP in PNG format. Name the images in the form of your IDP name (make sure it matches up with the keys in `settings/identity_providers` in `config/settings/development.yml`).
+
+Enter the container `docker exec -it sso /bin/bash` and run `bundle install`.
 
 While inside the container, run `rake db:create` and `rake db:migrate`.
 
-## Services (job queues, cache servers, search engines, etc.)
+Start the server with `rails s -p 80 -b 0.0.0.0`.
+
+### Features
+On the login page, you can clik the link to `Sign In`, `Sign Up`, `Sign-in Partners` to perform logging in as a regular user managed by Devise, registering as a regular user managed by Devise, or signning in using one of the identity providers. 
+
+Once signed in, you will see a data table utilizing `jQuery`'s `dataTables` library that shows the 24h, 7d, and 30d prices of bitcoin in different currencies. 
+
+If you are logged in using one of the IDPs, you can click the `Exit to #{IDP name}` on the top right corner of the header to be logged out of the app (no SLO request is sent) and redirected back to the IDP's homepage where you can see all your apps. You can log out of the IDP there.   
