@@ -74,9 +74,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise_saml_authenticatable (1.5.0)
-      devise (> 2.0.0)
-      ruby-saml (~> 1.7)
     dry-configurable (0.11.5)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.4, >= 0.4.7)
@@ -240,13 +237,13 @@ DEPENDENCIES
   byebug
   config
   devise
-  devise_saml_authenticatable
   font-awesome-rails
   html2slim
   jquery-rails
   pg
   rails (~> 6.0, >= 6.0.2.2)
   redis-namespace
+  ruby-saml
   sass-rails
   slim-rails
   spring

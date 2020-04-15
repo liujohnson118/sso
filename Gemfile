@@ -12,7 +12,7 @@ gem 'html2slim'
 gem 'sass-rails'
 gem "font-awesome-rails"
 gem 'devise'
-gem 'devise_saml_authenticatable'
+gem 'ruby-saml'
 gem 'config'
 
 group :development, :test do
