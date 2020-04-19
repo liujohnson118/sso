@@ -46,3 +46,6 @@ On the login page, you can clik the link to `Sign In`, `Sign Up`, `Sign-in Partn
 Once signed in, you will see a data table utilizing `jQuery`'s `dataTables` library that shows the 24h, 7d, and 30d prices of bitcoin in different currencies. 
 
 If you are logged in using one of the IDPs, you can click the `Exit to #{IDP name}` on the top right corner of the header to be logged out of the app (no SLO request is sent) and redirected back to the IDP's homepage where you can see all your apps. You can log out of the IDP there.   
+
+### Video Demo
+https://www.youtube.com/watch?v=AUoJrUeLV0s
