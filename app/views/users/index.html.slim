@@ -1,0 +1,15 @@
+br
+br
+h1 All Users
+
+h1 New User
+= form_for User.new do |f|
+  = f.label :full_name
+  = f.text_field :full_name
+  = f.label :email
+  = f.text_field :email
+  = f.label :address
+  = f.text_field :address
+  = f.label :phone_number
+  = f.text_field :phone_number
+  = submit_tag('Submit', {class: 'btn btn-success'})

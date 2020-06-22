@@ -11,9 +11,9 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'sass-rails'
 gem "font-awesome-rails"
-gem 'devise'
-gem 'ruby-saml'
 gem 'config'
+gem 'attr_encrypted'
+gem 'blind_index'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
