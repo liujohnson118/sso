@@ -10,9 +10,6 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
-  def edit
-  end
-
   def destroy
     if @user.destroy
       flash[:notice] = I18n.t('users.delete.success')
