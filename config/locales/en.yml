@@ -23,11 +23,16 @@ en:
   users:
     create:
       fail: Failed to create user.
+      name: Create User
       success: Successfully created user.
     delete:
       confirm: Are you sure to delete this user?
       fail: Failed to delete user.
+      name: Delete
       success: Successfully delete user.
+    edit:
+      name: Edit
+      save_changes: Save Changes
     update:
       fail: Failed to update user.
       success: Successfully updated user.
