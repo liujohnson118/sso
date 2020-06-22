@@ -2,14 +2,52 @@ br
 br
 h1 All Users
 
+.table-responsive.page-tables.table-striped.table-bordered
+  table#users-table border="0" cellpadding="0" cellspacing="0" width="100%"
+    thead
+      tr
+        th
+          | Full Name
+        th
+          | Email
+        th
+          | Address
+        th
+          | Phone Number
+        th
+          | Actions
+    tbody
+      - @users.each do |user|
+        tr
+          td.name = user.full_name
+          td.email = user.email
+          td.address = user.address
+          td.phone_number = user.phone_number
+          td
+            .btn-group
+              = link_to 'Edit', edit_user_path(user), class: 'btn btn-info'
+              = link_to 'Delete', user_path(user), method: :delete, class: 'btn btn-danger',
+                      data: {confirm: I18n.t('users.delete.confirm')}
+br
+br
+
 h1 New User
 = form_for User.new do |f|
-  = f.label :full_name
-  = f.text_field :full_name
-  = f.label :email
-  = f.text_field :email
-  = f.label :address
-  = f.text_field :address
-  = f.label :phone_number
-  = f.text_field :phone_number
-  = submit_tag('Submit', {class: 'btn btn-success'})
+  .form-inline
+    .form-group
+      = f.label :full_name
+      = f.text_field :full_name
+    | &nbsp;&nbsp;&nbsp;
+    .form-group
+      = f.label :email
+      = f.text_field :email
+    | &nbsp;&nbsp;&nbsp;
+    .form-group
+      = f.label :address
+      = f.text_field :address
+    | &nbsp;&nbsp;&nbsp;
+    .form-group
+      = f.label :phone_number
+      = f.text_field :phone_number
+    | &nbsp;&nbsp;&nbsp;
+    = submit_tag('Create User', {class: 'btn btn-success'})

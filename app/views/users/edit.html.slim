@@ -1,0 +1,20 @@
+br
+= form_for @user do |f|
+  .form-inline
+    .form-group
+      = f.label :full_name
+      = f.text_field :full_name
+    | &nbsp;&nbsp;&nbsp;
+    .form-group
+      = f.label :email
+      = f.text_field :email
+    | &nbsp;&nbsp;&nbsp;
+    .form-group
+      = f.label :address
+      = f.text_field :address
+    | &nbsp;&nbsp;&nbsp;
+    .form-group
+      = f.label :phone_number
+      = f.text_field :phone_number
+    | &nbsp;&nbsp;&nbsp;
+    = submit_tag('Save Changes', {class: 'btn btn-success'})
