@@ -40,3 +40,8 @@ Start the server with `rails s -p 80 -b 0.0.0.0`.
 The homepage is the users index page. On that page, you can add additional users by filling in the form. Click "Edit" on the users table to edit the user you wish. Click "Delete" to delete the user you wish. 
 
 On the user edit page, you can return to the users index page by clicking "All Users". 
+
+### Technologies Used
+On the logging side, techniques used for preventing PII leaks include configuring `config/initializers/filter_parameter_logging.rb` with appropriate parameters that may container personal information. As well, logstop gem was used to dynamically filter out information that may resemble personal information. 
+
+On the database side, gem attr_encrypted was used to encrypt columns that may container personal information so that logging with PostgreSQL does not show such personal information.
