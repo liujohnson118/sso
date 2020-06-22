@@ -33,6 +33,8 @@ en:
     edit:
       name: Edit
       save_changes: Save Changes
+    index:
+      name: All Users
     update:
       fail: Failed to update user.
       success: Successfully updated user.

@@ -18,3 +18,7 @@ br
       = f.text_field :phone_number
     | &nbsp;&nbsp;&nbsp;
     = submit_tag('Save Changes', {class: 'btn btn-success'})
+
+br
+br
+= link_to I18n.t('users.index.name'), users_path, class: 'btn btn-link'

@@ -17,7 +17,6 @@ html
     div.mainbar
       = yield
 
-= javascript_include_tag 'application'
 - controller_action = "#{params[:controller]}/#{params[:action]}"
 - if Rails.application.assets.find_asset(controller_action)
   = javascript_include_tag controller_action

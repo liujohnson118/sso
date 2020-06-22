@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'rails-controller-testing'
 
 RSpec.describe UsersController, type: :controller do
   let(:user) {FactoryBot.create(:user)}
