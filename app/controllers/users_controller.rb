@@ -2,12 +2,13 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy]
 
   def create
-    if User.create(user_params)
+    if new_user = User.create(user_params)
       flash[:notice] = I18n.t('users.create.success')
+      redirect_to edit_user_path(id: new_user.id)
     else
       flash[:alert] = I18n.t('users.create.fail')
+      redirect_to users_path
     end
-    redirect_to users_path
   end
 
   def destroy
@@ -29,7 +30,7 @@ class UsersController < ApplicationController
     else
       flash[:alert] = I18n.t('users.update.fail')
     end
-    redirect_to users_path
+    redirect_to edit_user_path(id: @user.id)
   end
 
   private
